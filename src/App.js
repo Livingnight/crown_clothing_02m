@@ -1,37 +1,21 @@
-import Categories from './components/category/categories.component'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import NotFound from './pages/not-found.component'
 
 function App() {
-	const categories = [
-		{
-			id: 1,
-			title: 'Hats',
-			imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-		},
-		{
-			id: 2,
-			title: 'Jackets',
-			imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-		},
-		{
-			id: 3,
-			title: 'Sneakers',
-			imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-		},
-		{
-			id: 4,
-			title: 'Womens',
-			imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-		},
-		{
-			id: 5,
-			title: 'Mens',
-			imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-		},
-	]
 	return (
-		<div className='App'>
-			<Categories categories={categories} />
-		</div>
+		<Routes>
+			<Route
+				path='/'
+				index
+				element={<Home />}
+			/>
+
+			<Route
+				path='*'
+				element={<NotFound />}
+			/>
+		</Routes>
 	)
 }
 
