@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+import { Outlet } from 'react-router-dom'
 import Categories from '../components/category/categories.component'
 
 const Home = () => {
@@ -28,7 +30,12 @@ const Home = () => {
 			imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
 		},
 	]
-	return <Categories categories={categories} />
+	return (
+		<Fragment>
+			<Categories categories={categories} />
+			<Outlet />
+		</Fragment>
+	)
 }
 
 export default Home
