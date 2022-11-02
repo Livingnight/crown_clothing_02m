@@ -8,12 +8,12 @@
 	border: 1px solid black;
 	margin: 0 0.75rem 1.5rem;
 
-	&.hover {
+	&:hover {
 		cursor: pointer;
 
 		& .background-image {
 			transform: scale(1.1);
-			transition: transform 6x cubic-bezier(0.25, 0.45, 0.45, 0.95);
+			transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
 		}
 
 		& .category-body-container {
@@ -21,7 +21,7 @@
 		}
 	}
 
-	&.large {
+	& .large {
 		height: 38rem;
 	}
 

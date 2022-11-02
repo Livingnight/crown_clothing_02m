@@ -23,6 +23,12 @@ export default function NavBar() {
 					>
 						Shop
 					</Link>
+					<Link
+						className='nav-item'
+						to='/sign-in'
+					>
+						Sign In
+					</Link>
 				</div>
 			</nav>
 			<Outlet />

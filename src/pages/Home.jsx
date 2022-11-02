@@ -32,8 +32,8 @@ const Home = () => {
 	]
 	return (
 		<Fragment>
-			<Categories categories={categories} />
 			<Outlet />
+			<Categories categories={categories} />
 		</Fragment>
 	)
 }

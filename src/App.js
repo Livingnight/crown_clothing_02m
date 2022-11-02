@@ -3,10 +3,11 @@ import NavBar from './layout/main_navigation.component'
 import Home from './pages/Home'
 import NotFound from './pages/not-found.component'
 import Shop from './pages/Shop'
+import SignInPage from './pages/sign-in.page'
 
 function App() {
 	return (
-		// NOTE: Will need "Outlet" to show component children
+		// NOTE: Will need "Outlet" to show component children with this design pattern
 		<Routes>
 			{/* NOTE:  */}
 			<Route
@@ -20,8 +21,13 @@ function App() {
 				/>
 				{/* NOTE: Shop Page Route */}
 				<Route
-					path='/shop'
+					path='shop'
 					element={<Shop />}
+				/>
+				{/* NOTE: Sign in Route  */}
+				<Route
+					path='sign-in'
+					element={<SignInPage />}
 				/>
 				{/*NOTE: Not Found Route */}
 				<Route
