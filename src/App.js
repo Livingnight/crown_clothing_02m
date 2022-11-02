@@ -4,6 +4,7 @@ import Home from './pages/home/home.page'
 import NotFound from './pages/not-found/not-found.component'
 import Shop from './pages/shop/Shop'
 import SignInPage from './pages/sign-in/sign-in.page'
+import { SignUpPage } from './pages/sign-up/sign-up.page'
 
 function App() {
 	return (
@@ -24,12 +25,17 @@ function App() {
 					path='shop'
 					element={<Shop />}
 				/>
-				{/* NOTE: Sign in Route  */}
+				{/* NOTE: Sign In Route  */}
 				<Route
 					path='sign-in'
 					element={<SignInPage />}
 				/>
-				{/*NOTE: Not Found Route */}
+				{/* NOTE: Sign Up Page Route */}
+				<Route
+					path='sign-up'
+					element={<SignUpPage />}
+				/>
+				{/*NOTE: Not Found Page Route */}
 				<Route
 					path='*'
 					element={<NotFound />}

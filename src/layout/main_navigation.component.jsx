@@ -29,6 +29,12 @@ export default function NavBar() {
 					>
 						Sign In
 					</Link>
+					<Link
+						className='nav-item'
+						to='/sign-up'
+					>
+						Sign Up
+					</Link>
 				</div>
 			</nav>
 			<Outlet />
