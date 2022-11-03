@@ -3,8 +3,7 @@ import NavBar from './layout/main_navigation.component'
 import Home from './pages/home/home.page'
 import NotFound from './pages/not-found/not-found.component'
 import Shop from './pages/shop/Shop'
-import SignInPage from './pages/sign-in/sign-in.page'
-import { SignUpPage } from './pages/sign-up/sign-up.page'
+import Auth from './pages/auth/auth.page'
 
 function App() {
 	return (
@@ -25,15 +24,10 @@ function App() {
 					path='shop'
 					element={<Shop />}
 				/>
-				{/* NOTE: Sign In Route  */}
+				{/* NOTE: Auth route for signing up or signing in */}
 				<Route
-					path='sign-in'
-					element={<SignInPage />}
-				/>
-				{/* NOTE: Sign Up Page Route */}
-				<Route
-					path='sign-up'
-					element={<SignUpPage />}
+					path='auth'
+					element={<Auth />}
 				/>
 				{/*NOTE: Not Found Page Route */}
 				<Route

@@ -25,15 +25,9 @@ export default function NavBar() {
 					</Link>
 					<Link
 						className='nav-item'
-						to='/sign-in'
+						to='/auth'
 					>
-						Sign In
-					</Link>
-					<Link
-						className='nav-item'
-						to='/sign-up'
-					>
-						Sign Up
+						SIGN IN
 					</Link>
 				</div>
 			</nav>
