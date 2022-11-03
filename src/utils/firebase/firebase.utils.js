@@ -1,13 +1,15 @@
 import { initializeApp } from 'firebase/app'
 import {
-	createUserWithEmailAndPassword,
 	getAuth,
-	GoogleAuthProvider,
+	signInWithRedirect,
 	signInWithPopup,
+	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
 } from 'firebase/auth'
-import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
-const firbaseConfig = {
+const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 
 	authDomain: 'crwn-clothing-o2m-db.firebaseapp.com',
@@ -20,7 +22,8 @@ const firbaseConfig = {
 
 	appId: '1:279982209582:web:d2f75b6396a318ec5b3dbf',
 }
-export const firebaseApp = initializeApp(firbaseConfig)
+
+const firebaseApp = initializeApp(firebaseConfig)
 
 const googleProvider = new GoogleAuthProvider()
 
@@ -31,7 +34,7 @@ googleProvider.setCustomParameters({
 export const auth = getAuth()
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInWithGoogleRedirect = () =>
-	signInWithGoogleRedirect(auth, googleProvider)
+	signInWithRedirect(auth, googleProvider)
 
 export const db = getFirestore()
 
@@ -57,7 +60,7 @@ export const createUserDocumentFromAuth = async (
 				...additionalInformation,
 			})
 		} catch (error) {
-			console.log('Error creating user', error.message)
+			console.log('error creating the user', error.message)
 		}
 	}
 
@@ -68,4 +71,10 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 	if (!email || !password) return
 
 	return await createUserWithEmailAndPassword(auth, email, password)
+}
+
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+	if (!email || !password) return
+
+	return await signInWithEmailAndPassword(auth, email, password)
 }
