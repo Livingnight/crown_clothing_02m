@@ -12,7 +12,7 @@ const Home = () => {
 		{
 			id: 2,
 			title: 'Jackets',
-			imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+			imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
 		},
 		{
 			id: 3,
