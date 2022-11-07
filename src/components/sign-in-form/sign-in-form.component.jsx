@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { UserContext } from '../../contexts/user.context'
 import {
-	createUserDocumentFromAuth,
 	signInAuthUserWithEmailAndPassword,
 	signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils'
-import Button from '../button/button.component'
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 import FormInput from '../form-input/form-input.component'
 import './sign-in-form.styles.scss'
 
@@ -16,33 +16,26 @@ const SignInForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields)
 	const { email, password } = formFields
 
+	const { setCurrentUser } = useContext(UserContext)
+
 	const resetFormFields = () => {
 		setFormFields(defaultFormFields)
 	}
 
 	const signInWithGoogle = async () => {
 		const { user } = await signInWithGooglePopup()
-		await createUserDocumentFromAuth(user)
+		setCurrentUser(user)
 	}
 
 	const handleSubmit = async event => {
 		event.preventDefault()
 
 		try {
-			const response = await signInAuthUserWithEmailAndPassword(email, password)
-			console.log(response)
+			const { user } = await signInAuthUserWithEmailAndPassword(email, password)
 			resetFormFields()
+			setCurrentUser(user)
 		} catch (error) {
-			switch (error.code) {
-				case 'auth/wrong-password':
-					alert('Email or password was wrong')
-					break
-				case 'auth/user-not-found':
-					alert('Email or password was wrong')
-					break
-				default:
-					console.log(error)
-			}
+			console.log('user sign in failed', error)
 		}
 	}
 
@@ -56,7 +49,7 @@ const SignInForm = () => {
 		<div className='sign-in-container'>
 			<h2>Already have an account?</h2>
 			<span>Sign in with your email and password</span>
-			<form action=''>
+			<form onSubmit={handleSubmit}>
 				<FormInput
 					label='Email'
 					type='email'
@@ -77,7 +70,7 @@ const SignInForm = () => {
 					<Button type='submit'>Sign In</Button>
 					<Button
 						type='button'
-						buttonType='google'
+						buttonType={BUTTON_TYPE_CLASSES.google}
 						onClick={signInWithGoogle}
 					>
 						Google Sign In
