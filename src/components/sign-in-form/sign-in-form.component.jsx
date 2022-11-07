@@ -16,24 +16,20 @@ const SignInForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields)
 	const { email, password } = formFields
 
-	const { setCurrentUser } = useContext(UserContext)
-
 	const resetFormFields = () => {
 		setFormFields(defaultFormFields)
 	}
 
 	const signInWithGoogle = async () => {
-		const { user } = await signInWithGooglePopup()
-		setCurrentUser(user)
+		await signInWithGooglePopup()
 	}
 
 	const handleSubmit = async event => {
 		event.preventDefault()
 
 		try {
-			const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+			await signInAuthUserWithEmailAndPassword(email, password)
 			resetFormFields()
-			setCurrentUser(user)
 		} catch (error) {
 			console.log('user sign in failed', error)
 		}
@@ -70,7 +66,7 @@ const SignInForm = () => {
 					<Button type='submit'>Sign In</Button>
 					<Button
 						type='button'
-						buttonType={BUTTON_TYPE_CLASSES.google}
+						buttonType='google'
 						onClick={signInWithGoogle}
 					>
 						Google Sign In

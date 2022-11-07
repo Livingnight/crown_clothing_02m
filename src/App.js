@@ -4,12 +4,8 @@ import Home from './pages/home/home.page'
 import NotFound from './pages/not-found/not-found.component'
 import Shop from './pages/shop/Shop'
 import Auth from './pages/auth/auth.page'
-import { useContext } from 'react'
-import { UserContext } from './contexts/user.context'
 
 function App() {
-	const { currentUser } = useContext(UserContext)
-
 	return (
 		// NOTE: Will need "Outlet" to show component children with this design pattern
 		<Routes>
@@ -31,16 +27,7 @@ function App() {
 				{/* NOTE: Auth route for signing up or signing in */}
 				<Route
 					path='auth'
-					element={
-						currentUser ? (
-							<Navigate
-								to='/'
-								replace
-							/>
-						) : (
-							<Auth />
-						)
-					}
+					element={<Auth />}
 				/>
 				{/*NOTE: Not Found Page Route */}
 				<Route
