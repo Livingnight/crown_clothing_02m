@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import NavBar from './layout/main_navigation.component'
 import Home from './pages/home/home.page'
 import NotFound from './pages/not-found/not-found.component'
-import Shop from './pages/shop/Shop'
+import Shop from './pages/shop/shop.component'
 import Auth from './pages/auth/auth.page'
 
 function App() {
