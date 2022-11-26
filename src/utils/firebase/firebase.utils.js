@@ -12,7 +12,7 @@ import {
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	apiKey: 'AIzaSyDcGkFJK2icqKUdnBkzh1vNo4WNYV5O7FQ',
 
 	authDomain: 'crwn-clothing-o2m-db.firebaseapp.com',
 
