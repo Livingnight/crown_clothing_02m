@@ -1,42 +1,20 @@
-import { Route, Routes } from 'react-router-dom'
-import NavBar from './layout/main_navigation.component'
-import Home from './pages/home/home.page'
-import NotFound from './pages/not-found/not-found.component'
-import Shop from './pages/shop/Shop'
-import Auth from './pages/auth/auth.page'
+import { Routes, Route } from 'react-router-dom';
 
-function App() {
-	return (
-		// NOTE: Will need "Outlet" to show component children with this design pattern
-		<Routes>
-			{/* NOTE:  */}
-			<Route
-				path='/'
-				element={<NavBar />}
-			>
-				{/*NOTE: Home Page Route */}
-				<Route
-					index
-					element={<Home />}
-				/>
-				{/* NOTE: Shop Page Route */}
-				<Route
-					path='shop'
-					element={<Shop />}
-				/>
-				{/* NOTE: Auth route for signing up or signing in */}
-				<Route
-					path='auth'
-					element={<Auth />}
-				/>
-				{/*NOTE: Not Found Page Route */}
-				<Route
-					path='*'
-					element={<NotFound />}
-				/>
-			</Route>
-		</Routes>
-	)
-}
+import Home from './routes/home/home.component';
+import Navigation from './routes/navigation/navigation.component';
+import Authentication from './routes/authentication/authentication.component';
+import Shop from './routes/shop/shop.component';
 
-export default App
+const App = () => {
+  return (
+    <Routes>
+      <Route path='/' element={<Navigation />}>
+        <Route index element={<Home />} />
+        <Route path='shop' element={<Shop />} />
+        <Route path='auth' element={<Authentication />} />
+      </Route>
+    </Routes>
+  );
+};
+
+export default App;
