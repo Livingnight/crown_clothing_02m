@@ -13,7 +13,6 @@ const ProductCard = ({ product }) => {
 
   const addProductToCart = () => {
     addItemToCart(product)
-    setCartItemCount(cartItems.length)
   };
 
   return (
