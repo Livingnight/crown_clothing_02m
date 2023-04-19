@@ -8,9 +8,13 @@ import './product-card.styles.scss';
 
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
-  const { addItemToCart } = useContext(CartContext);
 
-  const addProductToCart = () => addItemToCart(product);
+  const { addItemToCart, setCartItemCount, cartItems } = useContext(CartContext)
+
+  const addProductToCart = () => {
+    addItemToCart(product)
+    setCartItemCount(cartItems.length)
+  };
 
   return (
     <div className='product-card-container'>
@@ -20,7 +24,7 @@ const ProductCard = ({ product }) => {
         <span className='price'>{price}</span>
       </div>
       <Button buttonType='inverted' onClick={addProductToCart}>
-        Add to card
+        Add to cart
       </Button>
     </div>
   );
