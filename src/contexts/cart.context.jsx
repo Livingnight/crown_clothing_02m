@@ -18,12 +18,24 @@ const addCartItem = (cartItems, productToAdd) => {
   // return new array with modified cartItems/cost of item
   return [...cartItems, { ...productToAdd, quantity: 1 }]
 }
+const updateQuantity = (cartItems, id, amount) => {
+  // console.log('reached the cart context!', id, amount)
+  console.log('Cart Items: ', cartItems)
+  console.log(parseInt(amount))
+  cartItems.map(cartItem =>
+    cartItem.id === id
+      ? { ...cartItem, quantity: cartItem.quantity + parseInt(amount) }
+      : cartItem
+  )
+  console.log(cartItems)
+}
 
 export const CartContext = createContext({
   isCartOpen: false,
-  setIsCartOpen: () => { },
+  setIsCartOpen: () => {},
   cartItems: [],
-  addItemToCart: () => { },
+  addItemToCart: () => {},
+  updateItemQuantity: () => {},
   cartItemCount: 0,
   cartTotal: 0,
 })
@@ -50,11 +62,16 @@ export const CartProvider = ({ children }) => {
   const addItemToCart = productToAdd => {
     setCartItems(addCartItem(cartItems, productToAdd))
   }
+  const updateItemQuantity = (id, amount) => {
+    console.log('made it to here from checkout page')
+    setCartItems(updateQuantity(cartItems, id, amount))
+  }
   const value = {
     isCartOpen,
     setIsCartOpen,
     cartItems,
     addItemToCart,
+    updateItemQuantity,
     cartItemCount,
     cartTotal,
   }
