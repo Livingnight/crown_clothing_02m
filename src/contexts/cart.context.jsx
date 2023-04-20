@@ -19,15 +19,11 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }]
 }
 const updateQuantity = (cartItems, id, amount) => {
-  // console.log('reached the cart context!', id, amount)
-  console.log('Cart Items: ', cartItems)
-  console.log(parseInt(amount))
-  cartItems.map(cartItem =>
+  return cartItems.map(cartItem =>
     cartItem.id === id
       ? { ...cartItem, quantity: cartItem.quantity + parseInt(amount) }
       : cartItem
   )
-  console.log(cartItems)
 }
 
 export const CartContext = createContext({
