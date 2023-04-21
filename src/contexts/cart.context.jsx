@@ -18,20 +18,30 @@ const addCartItem = (cartItems, productToAdd) => {
   // return new array with modified cartItems/cost of item
   return [...cartItems, { ...productToAdd, quantity: 1 }]
 }
-const updateQuantity = (cartItems, id, amount) => {
+const removeCartItem = (cartItems, id, amount) => {
+  const foundItem = cartItems.find(cartItem => cartItem.id === id)
+
+  if (foundItem.quantity === 1) {
+    return cartItems.filter(cartItem => cartItem.id !== id)
+  }
   return cartItems.map(cartItem =>
     cartItem.id === id
-      ? { ...cartItem, quantity: cartItem.quantity + parseInt(amount) }
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
       : cartItem
   )
 }
 
+const clearCartItem = (cartItems, cartItemToClear) => {
+  return cartItems.filter(item => item.id !== cartItemToClear.id)
+}
+
 export const CartContext = createContext({
   isCartOpen: false,
-  setIsCartOpen: () => {},
+  setIsCartOpen: () => { },
   cartItems: [],
-  addItemToCart: () => {},
-  updateItemQuantity: () => {},
+  addItemToCart: () => { },
+  removeItemFromCart: () => { },
+  clearItemFromCart: () => { },
   cartItemCount: 0,
   cartTotal: 0,
 })
@@ -58,16 +68,20 @@ export const CartProvider = ({ children }) => {
   const addItemToCart = productToAdd => {
     setCartItems(addCartItem(cartItems, productToAdd))
   }
-  const updateItemQuantity = (id, amount) => {
+  const removeItemFromCart = (id, amount) => {
     console.log('made it to here from checkout page')
-    setCartItems(updateQuantity(cartItems, id, amount))
+    setCartItems(removeCartItem(cartItems, id, amount))
+  }
+  const clearItemFromCart = itemToClear => {
+    setCartItems(clearCartItem(cartItems, itemToClear))
   }
   const value = {
     isCartOpen,
     setIsCartOpen,
     cartItems,
     addItemToCart,
-    updateItemQuantity,
+    removeItemFromCart,
+    clearItemFromCart,
     cartItemCount,
     cartTotal,
   }
