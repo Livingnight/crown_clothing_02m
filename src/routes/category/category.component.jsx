@@ -1,22 +1,30 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ProductCard from '../../components/product-card/product-card.component'
 import { CategoriesContext } from '../../contexts/categories.context'
 
+import './category.styles.scss'
+
 const Category = () => {
   const { categoriesMap } = useContext(CategoriesContext)
-  const { categoryTitle } = useParams()
+  const { category } = useParams()
+  const [products, setProducts] = useState(categoriesMap[category])
+
+  useEffect(() => {
+    setProducts(categoriesMap[category])
+  }, [category, categoriesMap])
+
   return (
     <Fragment>
-      {console.log('Category Title: ', categoryTitle)}
-      <h2>{categoryTitle}</h2>
-      <div className='products-container'>
-        {categoriesMap[categoryTitle].map(product => (
-          <ProductCard
-            key={product.id}
-            product={product}
-          />
-        ))}
+      <h2 className='category-title'>{category.toUpperCase()}</h2>
+      <div className='category-item-container'>
+        {products &&
+          products.map(product => (
+            <ProductCard
+              key={product.id}
+              product={product}
+            />
+          ))}
       </div>
     </Fragment>
   )
