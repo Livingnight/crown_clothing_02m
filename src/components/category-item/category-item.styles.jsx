@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const BackgroundImage = styled.div`
   width: 100%;
@@ -17,7 +17,7 @@ export const Body = styled.div`
   justify-content: center;
   border: 1px solid black;
   background-color: white;
-  opoacity: 0.7;
+  opacity: 0.7;
   position: absolute;
 
   h2 {
@@ -48,9 +48,11 @@ export const CategoryItemContainer = styled.div`
   &:first-child {
     margin-right: 7.5px;
   }
+
   &:last-child {
     margin-left: 7.5px;
   }
+
   &:hover {
     cursor: pointer;
 
