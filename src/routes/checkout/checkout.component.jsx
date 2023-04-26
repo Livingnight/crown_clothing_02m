@@ -1,19 +1,50 @@
-import React, { useContext } from 'react'
-import CheckoutItem from '../../components/checkout-item/checkout-item.component'
+import { useContext } from 'react'
+
 import { CartContext } from '../../contexts/cart.context'
 
-import './checkout.styles.scss'
+import CheckoutItem from '../../components/checkout-item/checkout-item.component'
+
+import {
+  CheckoutContainer,
+  CheckoutHeader,
+  HeaderBlock,
+  Total,
+} from './checkout.styles'
 
 const CheckoutPage = () => {
-  const {
-    cartItems,
-  } = useContext(CartContext)
-  return (
-    <div className='checkout-page-container'>
+  const { cartItems, cartTotal } = useContext(CartContext)
+
+  return cartItems.length ? (
+    <CheckoutContainer>
+      <CheckoutHeader>
+        <HeaderBlock>
+          <span>Product</span>
+        </HeaderBlock>
+        <HeaderBlock>
+          <span>Description</span>
+        </HeaderBlock>
+        <HeaderBlock>
+          <span>Quantity</span>
+        </HeaderBlock>
+        <HeaderBlock>
+          <span>Price</span>
+        </HeaderBlock>
+        <HeaderBlock>
+          <span>Remove</span>
+        </HeaderBlock>
+      </CheckoutHeader>
       {cartItems.map(cartItem => (
-        <CheckoutItem cartItem={cartItem} />
+        <CheckoutItem
+          key={cartItem.id}
+          cartItem={cartItem}
+        />
       ))}
-    </div>
+      <Total>Total: ${cartTotal}</Total>
+    </CheckoutContainer>
+  ) : (
+    <CheckoutContainer>
+      <h2>Your Cart Is Empty</h2>
+    </CheckoutContainer>
   )
 }
 

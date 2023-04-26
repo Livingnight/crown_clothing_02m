@@ -5,8 +5,6 @@ import { CategoriesContext } from '../../contexts/categories.context'
 import CategoryPreviews from '../category-preview/category-preview.component'
 import Category from '../category/category.component'
 
-import './shop.styles.scss'
-
 const Shop = () => {
   return (
     <Routes>
