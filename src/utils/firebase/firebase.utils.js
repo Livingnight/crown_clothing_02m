@@ -20,7 +20,6 @@ import {
   getDocs,
 } from 'firebase/firestore'
 
-console.log(`API KEY: ${process.env.REACT_APP_FIREBASE_API_KEY}`)
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -30,7 +29,7 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 }
 
-const firebaseApp = initializeApp(firebaseConfig)
+initializeApp(firebaseConfig)
 
 const googleProvider = new GoogleAuthProvider()
 
@@ -61,23 +60,6 @@ export const addCollectionAndDocuments = async (
   await batch.commit()
   console.log('done')
 }
-
-// export const retrieveCategoryItemsFromStore = async (collectionKey, categoryName) => {
-//   const q = query(collection(db, collectionKey), where("title", '==', categoryName))
-//   const querySnapshot = await getDocs(q);
-
-//   querySnapshot.forEach(doc => {
-//     console.log(doc.id, " => ", doc.data())
-//   })
-// }
-
-// export const retrieveAllItemsFromStore = async (collectionKey) => {
-//   const querySnapshot = await getDocs(db, collectionKey)
-
-//   querySnapshot.forEach(doc => {
-//     console.log(doc.id, " => ", doc.data())
-//   })
-// }
 
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, 'categories')
