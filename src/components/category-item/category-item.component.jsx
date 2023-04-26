@@ -13,9 +13,7 @@ const CategoryItem = ({ category }) => {
   return (
     <CategoryItemContainer onClick={onNavigateHandler}>
       <BackgroundImage
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
+        imageUrl={imageUrl}
       />
       <Body>
         <h2>{title.toUpperCase()}</h2>
