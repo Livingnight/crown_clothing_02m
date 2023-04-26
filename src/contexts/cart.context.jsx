@@ -18,14 +18,14 @@ const addCartItem = (cartItems, productToAdd) => {
   // return new array with modified cartItems/cost of item
   return [...cartItems, { ...productToAdd, quantity: 1 }]
 }
-const removeCartItem = (cartItems, id, amount) => {
-  const foundItem = cartItems.find(cartItem => cartItem.id === id)
+const removeCartItem = (cartItems, productToRemove) => {
+  const foundItem = cartItems.find(cartItem => cartItem.id === productToRemove.id)
 
   if (foundItem.quantity === 1) {
-    return cartItems.filter(cartItem => cartItem.id !== id)
+    return cartItems.filter(cartItem => cartItem.id !== productToRemove.id)
   }
   return cartItems.map(cartItem =>
-    cartItem.id === id
+    cartItem.id === productToRemove.id
       ? { ...cartItem, quantity: cartItem.quantity - 1 }
       : cartItem
   )
@@ -68,9 +68,9 @@ export const CartProvider = ({ children }) => {
   const addItemToCart = productToAdd => {
     setCartItems(addCartItem(cartItems, productToAdd))
   }
-  const removeItemFromCart = (id, amount) => {
+  const removeItemFromCart = productToRemove => {
     console.log('made it to here from checkout page')
-    setCartItems(removeCartItem(cartItems, id, amount))
+    setCartItems(removeCartItem(cartItems, productToRemove ))
   }
   const clearItemFromCart = itemToClear => {
     setCartItems(clearCartItem(cartItems, itemToClear))
