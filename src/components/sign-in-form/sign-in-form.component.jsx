@@ -8,6 +8,7 @@ import {
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils'
 import { ButtonsContainer, SignInContainer } from './sign-in-form.styles'
+import { useNavigate } from 'react-router-dom'
 
 const defaultFormFields = {
   email: '',
@@ -15,6 +16,7 @@ const defaultFormFields = {
 }
 
 const SignInForm = () => {
+  const navigate = useNavigate()
   const [formFields, setFormFields] = useState(defaultFormFields)
   const { email, password } = formFields
 
@@ -32,6 +34,7 @@ const SignInForm = () => {
     try {
       await signInAuthUserWithEmailAndPassword(email, password)
       resetFormFields()
+      navigate('/')
     } catch (error) {
       console.log('user sign in failed', error)
     }
