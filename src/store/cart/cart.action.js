@@ -38,6 +38,7 @@ export const clearCartItem = (cartItems, productToClear) =>
 
 export const addItemToCart = (cartItems, productToAdd) => {
   const newCartItems = addCartItem(cartItems, productToAdd)
+
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems)
 }
 
@@ -53,4 +54,5 @@ export const clearItemFromCart = (cartItems, productToClear) => {
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems)
 }
 
-export const toggleIsCartOpen = isCartOpen => createAction(CART_ACTION_TYPES.TOGGLE_IS_CART_OPEN, !isCartOpen)
+export const setIsCartOpen = boolean =>
+  createAction(CART_ACTION_TYPES.TOGGLE_IS_CART_OPEN, !boolean)
